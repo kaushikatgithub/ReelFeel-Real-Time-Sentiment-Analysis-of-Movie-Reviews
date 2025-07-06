@@ -1,0 +1,2 @@
+Model 01: 80-20 Data split. Trained with using validation loss early-stopping callback. Training accuracy ~96% and testing accuracy ~83%.
+Model 02: 80-20 Data split. Trained without using validation loss early-stopping callback. Training accuracy ~98% and testing accuracy ~83%.
