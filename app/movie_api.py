@@ -1,6 +1,5 @@
 import os
 import requests
-
 from imdb import Cinemagoer
 from dotenv import load_dotenv
 from pathlib import Path
@@ -53,7 +52,6 @@ def fetch_movie_data(movie_name: str) -> dict:
         print(f"Error fetching movie data: {e}")
         return {}
 
-for movie in fetch_movie_data('krish'):
-    print("\n\n New Movie:") 
-    print(movie)
-    print("\n\n")
+# for testing
+# for movie in fetch_movie_data('Inception'):
+#     print("\n\n New Movie:\n", movie) 
