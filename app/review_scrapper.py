@@ -25,24 +25,29 @@ def get_reviews(movie_id: str, spoiler_free: bool = False) -> pd.DataFrame:
         soup = BeautifulSoup(response.text, 'html.parser')
         review_containers = soup.find_all('div', class_=review_container_class)
 
-        reviews = {'title': [], 'rating': [], 'content': []}
-
+        reviews = []
         for container in review_containers:
             rating = container.find('span', class_=class_names['rating'])
             title = container.find('h3', class_=class_names['title'])
             content = container.find('div', class_=class_names['content'])
 
-            reviews['rating'].append(rating.get_text(strip=True) if rating else None)
-            reviews['title'].append(title.get_text(strip=True) if title else None)
-            reviews['content'].append(content.get_text(strip=True) if content else None)
+            review = {
+                'rating': rating.get_text(strip=True) if rating else None,
+                'title': title.get_text(strip=True) if title else None,
+                'content': content.get_text(strip=True) if content else None
+            }
 
-        return pd.DataFrame(reviews)
+            if review['content']:
+                reviews.append(review)
+
+        return reviews
 
     except Exception as e:
         print(f"[Error] Could not fetch reviews for {movie_id}: {e}")
-        return pd.DataFrame(columns=['title', 'rating', 'content'])
+        return None
 
-if __name__ == "__main__":
-    df = get_reviews('tt4154796')
-    print(df.head())
-    print(f"Total reviews fetched: {df.shape[0]}")
+# For testing
+# if __name__ == "__main__":
+#     reviews = get_reviews('tt2631186')
+#     for review in reviews:
+#         print(f'{review["rating"]} || {review["title"]} || {review["content"]}')
