@@ -1,10 +1,13 @@
-
 def search_movie_url(movie_id: str, spoiler_free: bool = False) -> str:
     """Construct IMDb review URL for a movie with optional spoiler filtering."""
+
+    # handling the case if movie_id is not provided
+    if not movie_id:
+        return "ERROR"
+    
     base_url = f'https://www.imdb.com/title/{movie_id}/reviews/'
     spoiler_tag = '?spoilers=EXCLUDE'
     return base_url + spoiler_tag if spoiler_free else base_url
-
 
 # IMDb review scraping configuration
 review_container_class = 'ipc-list-card__content'
