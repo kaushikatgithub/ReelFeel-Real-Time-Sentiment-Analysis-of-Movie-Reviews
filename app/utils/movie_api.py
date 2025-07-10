@@ -3,11 +3,18 @@ import requests
 from imdb import Cinemagoer
 from dotenv import load_dotenv
 from pathlib import Path
+import streamlit as st
 
-# Load .env
-env_path = Path(__file__).resolve().parent.parent / ".env"
-load_dotenv(dotenv_path=env_path)
-API_KEY = os.getenv("API_KEY")
+# for deployement
+if "API_KEY" in st.secrets:
+    API_KEY = st.secrets["API_KEY"]
+else:
+    # Fallback to .env for local development
+    env_path = Path(__file__).resolve().parent.parent / ".env"
+    load_dotenv(dotenv_path=env_path)
+    API_KEY = os.getenv("API_KEY")
+
+
 
 
 def fetch_movie_data(movie_name: str) -> list[dict]:
