@@ -6,14 +6,14 @@ from pathlib import Path
 import streamlit as st
 
 # for deployement
-if "API_KEY" in st.secrets:
+try:
+    # Try to load from Streamlit secrets (used in deployed app)
     API_KEY = st.secrets["API_KEY"]
-else:
+except Exception:
     # Fallback to .env for local development
     env_path = Path(__file__).resolve().parent.parent / ".env"
     load_dotenv(dotenv_path=env_path)
     API_KEY = os.getenv("API_KEY")
-
 
 
 
@@ -37,7 +37,9 @@ def fetch_movie_data(movie_name: str) -> list[dict]:
         if not search_results:
             raise ValueError("No movie found with the given name.")
 
-        for movie in search_results[:5]:
+        total_results = len(search_results)
+        for i in range(min(total_results, 10)):
+            movie = search_results[i]
             movie_title = movie.get('title', '')
             if not movie_title:
                 continue

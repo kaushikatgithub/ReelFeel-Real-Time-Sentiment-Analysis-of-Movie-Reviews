@@ -111,7 +111,7 @@ def sentiment_analysis_tab():
 
     st.markdown(f"## {emoji.emojize(':mag_right:', language='alias')} Movie Search & Analysis")
     search_query = st.text_input(
-        f"{emoji.emojize(':clapper:', language='alias')} Enter movie title:", 
+        f"{emoji.emojize(':clapper:', language='alias')} Enter movie name:", 
         placeholder="e.g., The Matrix, Inception, Avatar...", 
         key="search_input"
     )
@@ -138,7 +138,7 @@ def sentiment_analysis_tab():
 
         # pages to switch between movies
         total_movies = len(st.session_state.movies)
-        total_pages = min(total_movies, 5) # only showing at most 5 pages for now
+        total_pages = min(total_movies, 10) # only showing at most 10 pages 
         
         col1, col2, col3 = st.columns([4, 4, 1])
         with col1:
@@ -152,7 +152,7 @@ def sentiment_analysis_tab():
                 st.session_state.current_page += 1
                 st.rerun()  # immediate rerun so display updates
 
-        print(st.session_state.current_page)
+        # print(st.session_state.current_page)
         currunt_movie_index = st.session_state.current_page - 1
         movie = st.session_state.movies[currunt_movie_index]
 
@@ -163,10 +163,12 @@ def sentiment_analysis_tab():
             st.error(f"Failed to display movie card: {e}")
         
 
-        if st.button(f"{emoji.emojize(':mag:', language='alias')} Perform Reviews Analysis", key="analyze_button"):
+        if st.button(f"{emoji.emojize(':mag:', language='alias')} Perform Review Analysis", key="analyze_button"):
             try:
                 with st.spinner("Fetching reviews..."):
                     reviews = get_reviews(movie.get('imdbID'))
+                    if reviews == None or len(reviews) == 0:
+                        raise ValueError("No reviews to fetch!")
                     reviews = predict(reviews)
                     st.session_state.reviews[movie.get('imdbID')] = reviews
                 st.success("Reviews fetched successfully!")
@@ -178,7 +180,7 @@ def sentiment_analysis_tab():
         # display reviews analysis if reviews fetched
         if movie.get('imdbID') in st.session_state.get('reviews', {}):
 
-            st.markdown(f"#### {emoji.emojize(':memo:', language='alias')} Quick Review Analysis")
+            st.markdown(f"#### {emoji.emojize(':memo:', language='alias')} Detailed Review Sentiment Analysis")
             reviews = st.session_state.reviews[movie.get('imdbID')]
 
             try:

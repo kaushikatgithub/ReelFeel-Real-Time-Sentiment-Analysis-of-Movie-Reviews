@@ -33,12 +33,12 @@ for key, default in {
 
 # Main App
 def main():
-    st.markdown(f'<h1 class="main-header">{emoji.emojize(":clapper_board:")} Movie Analysis Dashboard</h1>', unsafe_allow_html=True)
+    st.markdown(f'<h1 class="main-header">{emoji.emojize(":clapper_board:")} Movie Review Analysis Dashboard</h1>', unsafe_allow_html=True)
     
     # two tabs
     tab1, tab2 = st.tabs([
         f"{emoji.emojize(':house:')} How It Works", 
-        f"{emoji.emojize(':bar_chart:')} Movie Review Sentiment Analysis"
+        f"{emoji.emojize(':bar_chart:')} Movie Reviews Sentiment Analysis"
     ])
     
     with tab1:

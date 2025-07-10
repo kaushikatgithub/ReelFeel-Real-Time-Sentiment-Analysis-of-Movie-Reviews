@@ -1,161 +1,153 @@
 import streamlit as st
 
 def about_app_tab():
-    st.markdown("## 🎯 Welcome to the Movie Analysis Dashboard!")
-    
-    # App overview
+    st.markdown("## Welcome to the Movie Review Analysis Dashboard")
+
+    # Overview
     st.markdown("""
-    ### 🎬 **Overview**
-    The Movie Analysis Dashboard is an AI-powered tool that lets you explore movies and dive into audience reviews through advanced sentiment analysis.
-    
-    Search any movie, view detailed info, and unlock meaningful insights from real user feedback.
+    ### **Overview**
+    The Movie Analysis Dashboard is an interactive tool to search movies, fetch audience reviews, and analyze them with visual plots.
+    Quickly find any movie, view its details, and gain insights from real user reviews using sentiment analysis and intuitive visualizations.
     """)
 
-    # Key features section
-    st.markdown("### ✨ **Key Features**")
-    
+    # Key Features
+    st.markdown("### Key Features")
     col1, col2 = st.columns(2)
-    
+
     with col1:
         st.markdown("""
-        **🔍 Movie Search & Discovery**
+        **Movie Search & Discovery**
         - Search movies by title  
-        - Paginated search results  
-        - Seamless switching between movies  
-        - Detailed movie view  
-        """)
-        
-        st.markdown("""
-        **📊 Review Analysis**
-        - Auto-fetch real reviews  
-        - AI sentiment prediction  
-        - Review scoring system  
-        - Multiple analysis dimensions  
-        """)
-    
-    with col2:
-        st.markdown("""
-        **🎯 Movie Details**
-        - Plot summaries  
-        - Cast and crew  
-        - Genre & ratings  
-        - Release information  
-        """)
-        
-        st.markdown("""
-        **📈 Visual Insights**
-        - Interactive graphs  
-        - Sentiment distribution  
-        - Review patterns over time  
-        - Score visualizations  
+        - Browse results with pagination  
+        - Switch between movie selections easily  
+        - View detailed movie profiles  
         """)
 
-    # How it works section
-    st.markdown("### 🚀 **How It Works**")
-    
+        st.markdown("""
+        **Review Analysis**
+        - Automatically fetch real reviews  
+        - AI-based sentiment prediction  
+        - Numerical scoring and ratings  
+        - Multi-dimensional analysis  
+        """)
+
+    with col2:
+        st.markdown("""
+        **Movie Information**
+        - Plot summaries  
+        - Cast, crew, and genre info  
+        - Ratings and release details  
+        """)
+
+        st.markdown("""
+        **Visual Insights**
+        - Interactive sentiment graphs  
+        - Review trends over time  
+        - Score distribution charts  
+        """)
+
+    # How It Works
+    st.markdown("""
+        ### How It Works
+        1. **Search:** "Enter a movie title in the search bar.,
+        2. **Browse:** "Use pagination to navigate results.,
+        3. **Select:** "Click a movie to view details.,
+        4. **Analyze:** "Click 'Perform Analysis' to begin.,
+        5. **Explore:** "Review sentiment scores and visual reports.
+        """)
     steps = [
-        ("1️⃣ **Search**", "Type a movie name in the search bar."),
-        ("2️⃣ **Browse**", "Use pagination to view matching results."),
-        ("3️⃣ **Select**", "Click on a movie to explore its details."),
-        ("4️⃣ **Analyze**", "Click 'Perform Analysis' to start."),
-        ("5️⃣ **Explore**", "View sentiment stats, scores, and patterns.")
+        
     ]
-    
     for step, description in steps:
-        st.markdown(f"- {step}: {description}")
-    
-    # Technology stack
-    st.markdown("### 🛠️ **Technology Stack**")
-    
+        st.markdown(f"- **{step}**: {description}")
+
+    # Technology Stack
+    st.markdown("### Technology Stack")
     tech_col1, tech_col2, tech_col3 = st.columns(3)
-    
+
     with tech_col1:
         st.markdown("""
         **Frontend**
         - Streamlit  
         - Python  
-        - Interactive UI  
+        - Interactive UI Components  
         """)
-    
+
     with tech_col2:
         st.markdown("""
         **Data Processing**
         - Pandas  
         - NumPy  
-        - Matplotlib/Plotly  
+        - Plotly / Matplotlib  
         """)
-    
+
     with tech_col3:
         st.markdown("""
         **AI/ML**
-        - NLP models  
-        - Sentiment analysis  
-        - Predictive scoring  
+        - NLP-Tools
+        - Predictive scoring using RNN Model  
+        - Tensorflow 
         """)
-    
-    # Analysis capabilities
-    st.markdown("### 📊 **What You Can Analyze**")
-    
-    analysis_features = [
-        "Sentiment Classification (Positive, Negative, Neutral)",
-        "Score Prediction based on reviews",
-        "Emotion & Tone Analysis",
-        "Review Trends over Time",
-        "Rating Distribution Charts",
-        "Keyword & Theme Extraction"
-    ]
-    
-    for feature in analysis_features:
-        st.markdown(f"- {feature}")
-    
-    # Sample workflow
-    st.markdown("### 🧪 **Sample Workflow**")
-    
-    st.info("""
+
+    # Analysis Capabilities
+    st.markdown("""
+        ### Analysis Capabilities
+        - Sentiment classification: Positive, Negative, Neutral,
+        - Review-based score prediction,
+        - Emotion and tone detection,
+        - Trends over time from reviews,
+        - Rating and sentiment distribution charts,
+        - Frequent keywords and themes
+        """)
+    # analysis_features = [
+        
+    # ]
+    # for feature in analysis_features:
+    #     st.markdown(f"- {feature}")
+
+    # Sample Workflow
+    st.markdown("### Sample Workflow")
+    st.markdown("""
     **Example:**  
-    1. Search for `"The Dark Knight"`  
-    2. Select the 2008 version from results  
-    3. View plot, cast, and ratings  
+    1. Search for "The Dark Knight"  
+    2. Select the 2008 version  
+    3. Review plot, cast, and ratings  
     4. Click **Perform Analysis**  
-    5. Explore sentiment charts and insights  
+    5. Explore sentiment and visual data  
     """)
 
-    # Benefits section
-    st.markdown("### 🎯 **Who Is It For?**")
-    
+    # Audience
+    st.markdown("### Who Can Benefit?")
     benefits_col1, benefits_col2 = st.columns(2)
-    
+
     with benefits_col1:
         st.markdown("""
-        **🎥 Movie Lovers**
-        - Discover rich movie information  
-        - Understand public opinions  
-        - Decide what to watch next  
-        - Explore trends in storytelling  
+        **Movie Enthusiasts**
+        - Access rich movie data  
+        - Understand public sentiment  
+        - Make informed watchlist decisions  
         """)
-    
+
     with benefits_col2:
         st.markdown("""
-        **📊 Data Enthusiasts**
-        - Work with structured review data  
-        - Analyze sentiment patterns  
-        - Visualize audience response  
-        - Export insights for reports  
+        **Data Analysts**
+        - Analyze structured review data  
+        - Visualize audience feedback  
+        - Extract actionable insights  
         """)
-    
-    # Getting started
-    st.markdown("### 🚀 **Get Started**")
-    
+
+    # Getting Started
+    st.markdown("### Get Started")
     st.success("""
-    Head over to the **Movie Search** tab and start exploring!  
-    Enter a movie title to begin your sentiment journey 🎬
+    Go to the **Movie Search** tab to begin.  
+    Enter any movie title to explore its details and perform AI-driven analysis.
     """)
-    
+
     # Footer
     st.markdown("---")
     st.markdown("""
-    <div style='text-align: center; color: #666; font-size: 0.9em;'>
-        Built with ❤️ using Streamlit & AI-powered NLP models
+    <div style='text-align: center; color: #888; font-size: 0.9em;'>
+        Built with Streamlit and advanced NLP technologies.
     </div>
     """, unsafe_allow_html=True)
 

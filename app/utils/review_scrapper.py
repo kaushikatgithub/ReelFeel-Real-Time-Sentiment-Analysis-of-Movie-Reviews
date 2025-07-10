@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from config import search_movie_url, request_headers
 from config import class_names, review_container_class
 
-def get_reviews(movie_id: str, spoiler_free: bool = False) -> pd.DataFrame:
+def get_reviews(movie_id: str, spoiler_free: bool = True) -> pd.DataFrame:
     """Scrape user reviews for a given IMDb movie ID.
 
     Args:
