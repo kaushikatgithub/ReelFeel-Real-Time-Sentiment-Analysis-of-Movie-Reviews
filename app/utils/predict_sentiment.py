@@ -3,15 +3,9 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from dotenv import load_dotenv
-from pathlib import Path
 
-# Load .env
-env_path = Path(__file__).resolve().parent.parent / ".env"
-load_dotenv(dotenv_path=env_path)
-
-MAX_LEN = os.getenv("MAX_LEN")
-MODEL_PATH = os.getenv("MODEL_PATH")
+MAX_LEN = 1000
+MODEL_PATH = "./models/imdb_rnn_model_02_split_80_20.keras"
 
 # Loading IMDB word index 
 try:
@@ -74,6 +68,7 @@ def predict(reviews: list[dict]) -> list[dict]:
                 raise ValueError("Each review must be a dictionary.")
             if 'title' not in review or 'content' not in review:
                 raise KeyError("Each review must have 'title' and 'content' keys.")
+            
             text = review['title'] + " " + review['content']
             encoded = encode_review(text)
             encoded_reviews.append(encoded)
@@ -91,7 +86,7 @@ def predict(reviews: list[dict]) -> list[dict]:
 
     except Exception as e:
         raise RuntimeError(f"Error during sentiment prediction: {e}")
-
+    
 
 # For Testing
 # from dummy_data import sample_reviews
